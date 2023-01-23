@@ -4,6 +4,18 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body{
+  font-family: 'Epilogue', sans-serif;
+  background-color: #13131a;
+  color: #fff;
+}
+
 .linear-gradient {
   background: linear-gradient(
     179.14deg,
