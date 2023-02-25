@@ -22,7 +22,7 @@ contract InstaFund {
         Campaign storage campaign = campaigns[numberOfCampaigns];
 
         // Error validation
-        require(campaign.deadline > block.timestamp, "Campaign deadline must be in the future");
+        // require(campaign.deadline > block.timestamp, "Campaign deadline must be in the future");
 
         campaign.owner = _owner;
         campaign.title = _title;
