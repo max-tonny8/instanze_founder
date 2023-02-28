@@ -69,11 +69,15 @@ const Profile = () => {
   }, [address, contract]);
 
   return (
-    <DisplayCampaigns
-      title="My Campaigns"
-      isLoading={isLoading}
-      campaigns={campaigns}
-    />
+    <>
+    {
+      address ? (<DisplayCampaigns
+        title="My Campaigns"
+        isLoading={isLoading}
+        campaigns={campaigns}
+      />):(<h1 className="font-epilogue font-semibold text-[18px] text-white text-left">Please Connect your Wallet to see your campaigns</h1>)
+    }
+    </>
   );
 };
 

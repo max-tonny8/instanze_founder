@@ -9,6 +9,7 @@ import CountBox from '../components/CountBox';
 import CustomButton from '../components/CustomButton';
 import getAddress from '../hooks/getAddress';
 import { useContract } from '@thirdweb-dev/react';
+import { Notify } from 'notiflix';
 
 const CampaignDetails = () => {
   const { state } = useLocation();
@@ -63,6 +64,10 @@ const CampaignDetails = () => {
   }, [contract, address])
 
   const handleDonate = async () => {
+    if(!address) {
+      Notify.warning('Please connect your wallet to donate');
+      return;
+    }
     setIsLoading(true);
 
     await donate(state.pId, amount); 
@@ -142,6 +147,7 @@ const CampaignDetails = () => {
               <input 
                 type="number"
                 placeholder="ETH 0.1"
+                min={0.01}
                 step="0.01"
                 className="w-full py-[10px] sm:px-[20px] px-[15px] outline-none border-[1px] border-[#3a3a43] bg-transparent font-epilogue text-white text-[18px] leading-[30px] placeholder:text-[#4b5264] rounded-[10px]"
                 value={amount}

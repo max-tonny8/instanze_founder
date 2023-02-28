@@ -9,6 +9,7 @@ import getAddress from "../hooks/getAddress";
 import { ICreateCampaign } from "../types/createCampaign";
 import { useAddress, useContract, useContractWrite } from "@thirdweb-dev/react";
 import Loader from "../components/Loader";
+import { Notify } from "notiflix";
 
 const CreateCampaign = () => {
   const navigate = useNavigate();
@@ -58,6 +59,11 @@ const CreateCampaign = () => {
 
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
+
+    if(!address) {
+      Notify.warning('Please connect your wallet to create campaign');
+      return;
+    }
 
     checkIfImage(form.image, async (exists) => {
       if (exists) {

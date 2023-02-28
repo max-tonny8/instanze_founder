@@ -9,9 +9,10 @@ interface IProps {
     title: string;
     isLoading: boolean;
     campaigns: ICampaign[];
+    search: string;
 }
 
-const DisplayCampaigns = ({ title, isLoading, campaigns }: IProps) => {
+const DisplayCampaigns = ({ title, isLoading, campaigns, search }: IProps) => {
   const navigate = useNavigate();
 
   console.log("campaigns", campaigns);
@@ -35,7 +36,7 @@ const DisplayCampaigns = ({ title, isLoading, campaigns }: IProps) => {
           </p>
         )}
 
-        {!isLoading && campaigns.length > 0 && campaigns.map((campaign) => <FundCard 
+        {!isLoading && campaigns.length > 0 && campaigns.filter((campaign) => campaign.title.includes(search)).map((campaign) => <FundCard 
           key={campaign.id}
           {...campaign}
           handleClick={() => handleNavigate(campaign)}
